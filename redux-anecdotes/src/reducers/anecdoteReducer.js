@@ -1,3 +1,5 @@
+import { createSlice } from "@reduxjs/toolkit"
+
 const initialAnecdotes = [
     'If it hurts, do it more often.',
     'Adding manpower to a late software project makes it later!',
@@ -9,13 +11,15 @@ const initialAnecdotes = [
     'The only way to go fast, is to go well.'
 ]
 
-const anecdotesReducer = (state = initialAnecdotes, action) => {
-    switch (action.type) {
-        case 'ADD_ANECDOTE':
-            return [...state, action.payload]
-        default:
-            return state
+const anecdoteSlice = createSlice({
+    name: 'anecdotes',
+    initialState: initialAnecdotes,
+    reducers: {
+        createAnecdote(state, action) {
+            state.push(action.payload)
+        }
     }
-}
+})
 
-export default anecdotesReducer
+export const { createAnecdote } = anecdoteSlice.actions
+export default anecdoteSlice.reducer

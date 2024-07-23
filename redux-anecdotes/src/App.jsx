@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { filter } from './reducers/filterReducer'
 
 const Anecdote = ({header, text}) => {
   return (
@@ -43,10 +44,7 @@ const App = () => {
   }
 
   const filterAnecdote = (e) => {
-    dispatch({
-      type: 'FILTER',
-      payload: e.target.value
-    })
+    dispatch(filter(e.target.value))
     setFilterText(e.target.value)
   }
 
